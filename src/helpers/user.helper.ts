@@ -1,7 +1,6 @@
 import { STATUS_CODE, UserMsgs } from "../constants";
 import { IResponseType, IUser } from "../interfaces";
 import { RedisService } from "../services";
-//modifying
 import * as amqp from 'amqplib/callback_api'
 
 require('../services/con.js')
@@ -47,18 +46,14 @@ class UserHelper {
                 }
                 console.log("channel created")
                 var queue = 'blockdata';
-                //var msg: any = block_details;
                 channel.assertQueue(queue, {
                     durable: false
                 });
-                //send message as buffer
-
 
                 channel.sendToQueue(queue, Buffer.from(JSON.stringify(block_details)));
 
                 channel.consume(queue, function (block_details: any) {
                     console.log(" [x] Received");
-                    //console.log(JSON.parse(block_details.content.toString()));
                 }, { noAck: true });
 
                 console.log(block_details.toString('utf8'));
@@ -71,18 +66,6 @@ class UserHelper {
                 });
             });
         });
-
-
-        // await block_details.save((err: any, doc: any) => {
-        //     if (!err)
-        //         console.log("success")
-        //     else
-        //         console.log('Error during record insertion : ' + err);
-        // });
-
-
-
-
     }
 
     getUser = async (): Promise<IResponseType<IUser | void>> => {
@@ -106,8 +89,5 @@ class UserHelper {
     }
 
 }
-
-
-
 
 export default new UserHelper();

@@ -3,8 +3,6 @@ import { STATUS_CODE } from "../constants";
 import UserHelper from "../helpers/user.helper";
 import { Controller } from "../interfaces";
 
-
-
 export default class UserController implements Controller {
 
     public router = Router();
@@ -12,7 +10,6 @@ export default class UserController implements Controller {
 
     constructor() {
         this.router.route(this.path).get(this.getUser)
-        // this.router.route(this.path).post(this.postdata)
     }
 
     getUser(req: Request, res: Response) {
@@ -26,14 +23,5 @@ export default class UserController implements Controller {
             userData
 
         })
-        //console.log(`userdata ${userData}`)
     }
-    //PostData
-    // postdata(req: Request, res: Response) {
-    //     const postData = UserHelper.postdata(req.body);
-    //     //console.log(req.body)
-    //     res.status(postData.status).json(postData)
-
-    // }
-    //end
 }

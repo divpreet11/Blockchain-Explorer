@@ -1,5 +1,3 @@
-
-
 class BlockHelper {
 
     getBlocks() {

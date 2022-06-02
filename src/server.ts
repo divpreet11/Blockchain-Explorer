@@ -12,10 +12,6 @@ class App {
 
     constructor() {
         this.app = express();
-        // parse application/x-www-form-urlencoded
-
-
-        // parse application/json
         this.app.use(bodyParser.json())
         this.registerMiddlewares();
         this.registerRoutes();
@@ -31,8 +27,6 @@ class App {
             this.app.use(route)
         }
     }
-
-
 
     public listen(): void {
         this.app.listen(PORT, () => {
